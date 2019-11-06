@@ -16,8 +16,12 @@ Film::Film(string fTitle, string fDirector, const unsigned int fYear, const unsi
 }
 
 void Film::setActors(Actor* actorsTemp)  {
+    delete[] actors;
     actors = new Actor[noOfActors];
-    actors = actorsTemp;
+    for (unsigned int i = 0; i < noOfActors; i++){
+        actors[i] = actorsTemp[i];
+    }
+    delete[] actorsTemp;
 }
 
 void Film::deleteActors()  {
@@ -43,6 +47,7 @@ void Film::operator=(const Film &right) {
     year = right.year;
     director = right.director;
     noOfActors = right.noOfActors;
+    delete[] actors;
     actors = new Actor[noOfActors];
     if ( &right != this ) {
         for (unsigned int i = 0; i < noOfActors; i++){

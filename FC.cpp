@@ -49,13 +49,14 @@ bool FC::addFilm(const string fTitle, const string fDirector, const unsigned int
     }
     Film* tempFilm = new Film(fTitle,fDirector,fYear,fDuration);
     tempFilms[noOfFilms] = *tempFilm;
-    Actor* tempActors = new Actor[0];
+    Actor* tempActors = NULL;
 
     tempFilms[noOfFilms].setActors(tempActors);
     for(unsigned int i = 0; i < noOfFilms; i++) {
         if (films[i].getFilmTitle() == fTitle && films[i].getFilmDirector() == fDirector ) {
             delete tempFilm;
             delete[] tempFilms;
+            delete[] tempActors;
             return false;
         }
     }
